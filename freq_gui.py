@@ -493,7 +493,7 @@ class MainWindow(QMainWindow):
 
         # ── Górny pasek ──────────────────────────────────────────────────
         top = QHBoxLayout()
-        self.btn_wczytaj = QPushButton("📂  Wczytaj plik WAV")
+        self.btn_wczytaj = QPushButton("Wczytaj plik WAV")
         self.btn_wczytaj.setFixedHeight(38)
         self.btn_wczytaj.setStyleSheet("font-weight: bold; font-size: 13px;")
         self.btn_wczytaj.clicked.connect(self.wczytaj)
@@ -525,11 +525,11 @@ class MainWindow(QMainWindow):
         self.tab_params    = TabParametry(self)
         self.tab_cepstrum  = TabCepstrum(self)
 
-        self.tabs.addTab(self.tab_sygnal,   "🔊 Sygnał + Okno")
-        self.tabs.addTab(self.tab_fft,      "📈 FFT")
-        self.tabs.addTab(self.tab_spektr,   "🌈 Spektrogram")
-        self.tabs.addTab(self.tab_params,   "📊 Parametry (Frame)")
-        self.tabs.addTab(self.tab_cepstrum, "🎙️ Cepstrum + F0")
+        self.tabs.addTab(self.tab_sygnal,   "Sygnał + Okno")
+        self.tabs.addTab(self.tab_fft,      "FFT")
+        self.tabs.addTab(self.tab_spektr,   "Spektrogram")
+        self.tabs.addTab(self.tab_params,   "Parametry (Frame)")
+        self.tabs.addTab(self.tab_cepstrum, "Cepstrum + F0")
 
         root.addWidget(self.tabs)
 

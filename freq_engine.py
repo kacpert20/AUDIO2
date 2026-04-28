@@ -7,22 +7,66 @@ import numpy as np
 OKNA = ["Prostokątne", "Trójkątne", "Hamminga", "Hanna", "Blackmana"]
 
 
+def okno_prostokatne(N):
+    """w(n) = 1 dla n = 0, 1, ..., N-1"""
+    return np.ones(N)
+
+
+def okno_trojkatne(N):
+    """
+    Okno trójkątne (Bartlett).
+    w(n) = 1 - |2n - (N-1)| / (N-1)
+    """
+    n = np.arange(N)
+    return 1.0 - np.abs(2.0 * n - (N - 1)) / (N - 1)
+
+
+def okno_hamminga(N):
+    """
+    Okno Hamminga.
+    w(n) = 0.54 - 0.46 * cos(2*pi*n / (N-1))
+    """
+    n = np.arange(N)
+    return 0.54 - 0.46 * np.cos(2.0 * np.pi * n / (N - 1))
+
+
+def okno_hanna(N):
+    """
+    Okno Hanna (von Hann).
+    w(n) = 0.5 * (1 - cos(2*pi*n / (N-1)))
+    """
+    n = np.arange(N)
+    return 0.5 * (1.0 - np.cos(2.0 * np.pi * n / (N - 1)))
+
+
+def okno_blackmana(N):
+    """
+    Okno Blackmana.
+    w(n) = 0.42 - 0.5*cos(2*pi*n/(N-1)) + 0.08*cos(4*pi*n/(N-1))
+    """
+    n = np.arange(N)
+    return (0.42
+            - 0.5  * np.cos(2.0 * np.pi * n / (N - 1))
+            + 0.08 * np.cos(4.0 * np.pi * n / (N - 1)))
+
+
 def pobierz_okno(nazwa, N):
     """
     Zwraca tablicę okna o długości N dla wybranej nazwy.
+    Wszystkie okna zaimplementowane ręcznie według wzorów.
     """
     if nazwa == "Prostokątne":
-        return np.ones(N)
+        return okno_prostokatne(N)
     elif nazwa == "Trójkątne":
-        return np.bartlett(N)
+        return okno_trojkatne(N)
     elif nazwa == "Hamminga":
-        return np.hamming(N)
+        return okno_hamminga(N)
     elif nazwa == "Hanna":
-        return np.hanning(N)
+        return okno_hanna(N)
     elif nazwa == "Blackmana":
-        return np.blackman(N)
+        return okno_blackmana(N)
     else:
-        return np.ones(N)
+        return okno_prostokatne(N)
 
 
 # =========================================================================
